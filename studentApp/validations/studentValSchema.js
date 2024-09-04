@@ -17,8 +17,16 @@ const studentSchema = {
         studentEnrollmentNo: joi.string()
             .regex(/^en\d{2}it301\d{3}$/)
             .required()
-            .error(new Error('Student enrollment number is invalid. It should be in the format "enXXit301YYY".')),
-    
+            // .error(new Error('Student enrollment number is invalid. It should be in the format "enXXit301YYY".')),
+             .messages({
+                'studentEnrollmentNo.regex': 'Invalid enrollment number',
+                // 'password.minOfSpecialCharacters': '{#label} should contain at least {#min} special character',
+                // 'password.minOfLowercase': '{#label} should contain at least {#min} lowercase character',
+                // 'password.minOfNumeric': '{#label} should contain at least {#min} numeric character',
+                // 'password.noWhiteSpaces': '{#label} should not contain white spaces',
+                // 'password.onlyLatinCharacters': '{#label} should contain only Latin characters',
+            }),
+
         studentPassword: joiPassword
             .string()
             .minOfSpecialCharacters(1)
@@ -37,8 +45,7 @@ const studentSchema = {
             }),
     
         studentEmail: joi.string()
-            .email()
-            .required(),
+            .email(),
     }),
     
 }

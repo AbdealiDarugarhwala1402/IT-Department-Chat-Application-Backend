@@ -1,29 +1,29 @@
 const mongoose = require('mongoose');
 
 const studentSchema = new mongoose.Schema({
-    studentName : {
+    studentName: {
         type: String,
-        require : true,
+        require: true,
     },
-    studentEnrollmentNo : {
+    studentEnrollmentNo: {
         type: String,
-        require : true,
+        require: true,
     },
-    studentPassword : {
+    studentPassword: {
         type: String,
-        require : true,
+        require: true,
     },
-    studentEmail : {
-        type : String,
+    studentEmail: {
+        type: String,
     },
-    studentProfilePic:{
+    studentProfilePic: {
         type: String,
     },
     isActive: {
         type: String,
         default: true,
-      },
-    });
-    studentSchema.set("timestamps", true);
-    
-    module.exports = mongoose.model("student", studentSchema);
+    },
+});
+studentSchema.set("timestamps", true);
+
+module.exports = mongoose.model("student", studentSchema);

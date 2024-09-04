@@ -7,9 +7,10 @@ module.exports = {
         try {
             const value = await studentValSchema.registerStudent.validate(req.body, { abortEarly: false });
             if (value.error) {
+                const errorMessage = value.error.details[0] ? value.error.details[0].message : "Unknown error occurred";
                 res.status(403).json({
                     success: false,
-                    // message: value.error.details[0].message
+                    message: errorMessage
                 });
             } else {
                 req.file ? unlinkSync(req.file.path) : null;
@@ -21,7 +22,8 @@ module.exports = {
                 message: `Error occurred: ${error.message}`
             });
         }
-    },
+    }
+    
     
 
     // loginUserValidation: async (req, res, next) => {
